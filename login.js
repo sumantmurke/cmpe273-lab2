@@ -39,13 +39,13 @@ Login.prototype.login = function(_name, _email) {
 
 Login.prototype.replaceSid = function(sessionId){
 //delete this.sessionMap[sessionId];
-var name = this.sessionMap[sessionId].name
-var email= this.sessionMap[sessionId].email
-
-var sessionId = new Date().getTime();
-this.sessionMap[sessionId] = { name: name, email: email } 
-console.log('new session id ' + sessionId + ' for login::' + _email);
-return sessionId;
+  		var name = this.sessionMap[sessionId].name
+        var email= this.sessionMap[sessionId].email
+        delete this.sessionMap[sessionId];
+        var sessionId = new Date().getTime();
+        this.sessionMap[sessionId] = { name: name, email: email }
+        console.log('new session id ' + sessionId + ' for login::' + email);
+        return sessionId;
 
 
 };

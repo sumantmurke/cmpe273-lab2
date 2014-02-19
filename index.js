@@ -67,14 +67,12 @@ function put(request, response) {
 	var cookies = request.cookies;
 	console.log(cookies);
 	if('session_id' in cookies)
-	{
-		
-		//if ( login.isLoggedIn(sid) ) {
-		var newSessionId = login.replaceSid(cookies.session_id, cookies.name, cookies.email);
-		response.setHeader('Set-Cookie', 'session_id=' + newSessionId);
-
-//response.end("Your new session id is :" + newSessionId)
-
+	{ 			
+		var sid = cookies['session_id'];
+        var name = cookies['name']
+        var email= cookies['email'];
+		var newSessionId = login.replaceSid(sid, name, email);
+		response.setHeader('Set-Cookie', 'session_id=' + newSessionId);	
 		response.end("Re-freshed session id\n");
 	}
 };
