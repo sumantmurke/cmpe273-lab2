@@ -37,11 +37,26 @@ Login.prototype.login = function(_name, _email) {
 	return sessionId;
 };
 
+Login.prototype.replaceSid = function(sessionId){
+//delete this.sessionMap[sessionId];
+var name = this.sessionMap[sessionId].name
+var email= this.sessionMap[sessionId].email
+
+var sessionId = new Date().getTime();
+this.sessionMap[sessionId] = { name: name, email: email } 
+console.log('new session id ' + sessionId + ' for login::' + _email);
+return sessionId;
+
+
+};
+
 /**
  * Logout from the server
  */ 
 Login.prototype.logout = function(sessionId) {
 	console.log('logout::' + sessionId);
+	delete this.sessionMap[sessionId];
+    return sessionId;
    /*
 	* TODO: Remove the given sessionId from the sessionMap
 	*/
